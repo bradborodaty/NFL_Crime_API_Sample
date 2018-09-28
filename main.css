@@ -1,3 +1,11 @@
+body {
+	font-family: 'Molengo', sans-serif;
+}
+
+.nav-bg {
+	background-color: rgb(213,10,10,.5);
+}
+
 #loading {
 	display: none;
 }
@@ -13,4 +21,33 @@
 .table {
 	display: none;
 	margin-top: 1rem;
+}
+
+.card-header-home {
+	background-color: rgb(213,10,10,.5);
+}
+
+.card-body-home {
+	padding-left: 0px;
+	background-color: rgb(1,51,105,.2);
+	text-align: center;
+}
+
+.card-body-home > ol {
+	text-align: left;
+}
+
+.btn-home-fill {
+	border: 1px rgb(213,10,10,.5);
+	border-radius: 10px;
+	background: linear-gradient(to right, rgb(213,10,10,.5) 50%, #fff 50%);
+	background-size: 210% 100%;
+	background-position: right bottom;
+	color: #000;
+	transition: all .5s ease-out;
+}
+
+.btn-home-fill:hover {
+	background-position: left bottom;
+	color: #fff;
 }

@@ -4,12 +4,14 @@
 		<title>NFL Crime Data</title>
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<!-- Molengo Google Font -->
+		<link href="https://fonts.googleapis.com/css?family=Molengo" rel="stylesheet">
 		<link rel="stylesheet" href="main.css">
 	</head>
 	
 	<body>
 		<!-- navigation -->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<nav class="navbar navbar-expand-lg navbar-dark nav-bg">
 			<a class="navbar-brand" href="#">NFL Teams</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -23,8 +25,8 @@
 		</nav>
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-12">
-					<div>Click the "Show Teams" button to display a list of all 32 NFL teams and their coinciding division with total arrest count.</div>
+				<div class="col-12">
+					<div><p>Click the "Show Teams" button to display a list of all 32 NFL teams and their coinciding division with total arrest count. Results are up until 1/31/2016</p></div>
 					<button id="showTeamData" class="btn btn-primary" type="button">Show Teams</button>
 					<button id="showPlayerData" class="btn btn-primary" type="button">Show Players</button>
 					<table class="table table-striped table-team">
@@ -53,6 +55,48 @@
 						</tbody>
 					</table>
 					<div id="loading"><img src="spinner.gif" alt="Loading..."/></div>
+				</div>
+			</div><!-- ./row -->
+			<br/>
+			<div class="row">
+				<div class="col-12">
+					<h3 id="total-count"> total crimes that have been committed by NFL players.</h3>
+				</div>
+			</div><!-- ./row -->
+			<br/>
+			<div class="row">
+				<div class="col-4">
+					<div class="card-header card-header-home">
+						NFL Top Crime Teams
+					</div>
+					<div class="card-body card-body-home">
+						<ol id="top-teams">
+						
+						</ol>
+						<button class="btn btn-home-fill">See Teams</button>
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="card-header card-header-home">
+						NFL Top Crime Players
+					</div>
+					<div class="card-body card-body-home">
+						<ol id="top-players">
+						
+						</ol>
+						<button class="btn btn-home-fill">See Players</button>
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="card-header card-header-home">
+						Top Crimes
+					</div>
+					<div class="card-body card-body-home">
+						<ol id="top-crimes">
+						
+						</ol>
+						<button class="btn btn-home-fill">See Crimes</button>
+					</div>
 				</div>
 			</div><!-- ./row -->
 		</div><!-- ./container -->

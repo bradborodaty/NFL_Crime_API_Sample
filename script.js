@@ -1,9 +1,114 @@
 $(document).ready(function() {
+	
+	// function to get top crime teams
+	function getTopCrimeTeams() {
+		$.get('http://nflarrest.com/api/v1/team', function(data) { 
+			//console.log(data);
+			
+			// create compare function to sort by arrest_count
+			function compare(a,b) {
+				if (a.arrest_count < b.arrest_count) {
+					return 1;
+				} else if (a.arrest_count > b.arrest_count) {
+					return -1;
+				} else {
+					return 0;
+				}
+			}
+			
+			// sort data
+			data.sort(compare);
+			
+			// map top 5 teams into own array
+			let topTeams = new Array();
+			for (var i = 0; i < data.length; i++) {
+				if (i < 5) {
+					topTeams.push('<li>' + data[i].Team_preffered_name + ' (' + data[i].arrest_count + ')</li>');
+				}
+			}
+			
+			// display on page
+			$("#top-teams").append(topTeams);
+		});
+	}
+	
+	// top 5 crime players function 
+	function getTopCrimePlayers() {
+		$.get('http://nflarrest.com/api/v1/player', function(data) {
+			//console.log(data)
+			// compare function of array object properties to sort by arrest_count
+			function compare(a,b) {
+				if (a.arrest_count < b.arrest_count) {
+					return 1;
+				} else if (a.arrest_count > b.arrest_count) {
+					return -1;
+				} else {
+					return 0;
+				}
+			}
+			// sort data by highest arrests before mapping into new array
+			data.sort(compare);
+			// map top 5 arrested players into array
+			let topPlayers = new Array();
+			for (var i = 0; i < data.length; i++) {
+				if (i < 5) {
+					topPlayers.push('<li>' + data[i].Name + ' (' + data[i].arrest_count + ')');
+				}
+			}
+			
+			$("#top-players").append(topPlayers);
+		});
+	}
+	
+	// total crimes across all teams
+	function calcTotalCrimes() {
+		$.get('http://nflarrest.com/api/v1/team', function(data) {
+			//console.log(data);
+			
+			let eachTeamCount = new Array();
+			for (var i =0; i < data.length; i++) {
+				eachTeamCount.push(data[i].arrest_count);
+			}
+			console.log(eachTeamCount);
+			
+			// hold the total
+			let crimeTotal = 0;
+			for (var i = 0; i < eachTeamCount.length; i++) {
+				// make sure to convert string values to integers to add them together
+				crimeTotal += parseInt(eachTeamCount[i]);
+			}
+			
+			$("#total-count").prepend(crimeTotal);
+		});
+	}
+	
+	// top crimes
+	function getTopNflCrimes() {
+		$.get('http://nflarrest.com/api/v1/crime', function(data) {
+			//console.log(data);
+			
+			let topCrimes = new Array();
+			for (var i = 0; i < data.length; i++) {
+				if (i < 5) {
+					topCrimes.push('<li>' + data[i].Category + ' (' + data[i].arrest_count + ')</li>');
+				}
+			}
+			
+			$('#top-crimes').append(topCrimes);
+		});
+	}
+	
+	// run the functions on page load
+	getTopCrimeTeams();
+	calcTotalCrimes();
+	getTopNflCrimes();
+	getTopCrimePlayers();
+	
 	// get team data
 	function getTeamData() {
 		// call api from http://nflarrest.com/api/
 		$.get('http://nflarrest.com/api/v1/team', function(data){
-			console.log(data)
+			//console.log(data)
 			// create new array to separate teams to output as a list item
 			let teamsList = new Array();
 			for (var i = 0; i < data.length; i++) {
@@ -19,7 +124,7 @@ $(document).ready(function() {
 	// get top 20 player data
 	function getPlayerData() {
 		$.get('http://nflarrest.com/api/v1/player', function(data) {
-			console.log(data)
+			//console.log(data)
 			// compare function of array object properties to sort by arrest_count
 			function compare(a,b) {
 				if (a.arrest_count < b.arrest_count) {
@@ -39,7 +144,7 @@ $(document).ready(function() {
 					playersList.push(data[i]);
 				}
 			}
-			console.log(playersList);
+			//console.log(playersList);
 			// create new array to create final output
 			let finalPlayersList = new Array();
 			for (var i = 0; i < playersList.length; i++) {
